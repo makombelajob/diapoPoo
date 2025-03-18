@@ -7,14 +7,20 @@ export class Diaporama {
         if(!this.active) {
             this.active.classList.add("active");
         }
+        this.interval();
+        this.addEventListener();
+    }
 
+    interval() {
+        this.intervalTime = setInterval(() => this.nextSlide(), 5000);
+    }
+
+    addEventListener() {
         this.nextBtn.addEventListener("click", () => this.nextSlide());
         this.prevBtn.addEventListener("click", () => this.prevSlide());
-        this.intervalTime = setInterval(() => this.nextSlide(), 5000);
-
         this.diapo.addEventListener("mouseenter", () => clearInterval(this.intervalTime));
         this.diapo.addEventListener("mouseleave", () => {
-           this.intervalTime = setInterval(() => this.nextSlide(), 5000);
+            this.intervalTime = setInterval(() => this.nextSlide(), 5000);
         });
     }
 
@@ -41,4 +47,5 @@ export class Diaporama {
 
         this.active.classList.add("active");
     }
+
 }
